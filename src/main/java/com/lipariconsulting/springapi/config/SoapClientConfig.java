@@ -1,5 +1,7 @@
 package com.lipariconsulting.springapi.config;
 
+import com.lipariconsulting.springapi.client.NumberConversion;
+import com.lipariconsulting.springapi.client.NumberConversionSoapType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -22,6 +24,12 @@ public class SoapClientConfig {
         template.setUnmarshaller(marshaller);
         template.setDefaultUri("http://localhost:8080/ws/countries.wsdl"); // SOAP service URL
         return template;
+    }
+
+    @Bean
+    public NumberConversionSoapType numberConversionClient() {
+        NumberConversion service = new NumberConversion();
+        return service.getNumberConversionSoap();
     }
 
 }
