@@ -14,14 +14,14 @@ public class SoapService {
     private WebServiceTemplate webServiceTemplate;
 
     public String request(String country) {
-        // Crea la richiesta SOAP
+        // Create the SOAP request
         GetCountryRequest request = new GetCountryRequest();
         request.setName(country);
 
-        // Invia la richiesta SOAP e ottieni la risposta
+        // Send the SOAP request and get the response
         GetCountryResponse response = (GetCountryResponse) webServiceTemplate.marshalSendAndReceive(request);
 
-        // Elabora la risposta
+        // Process the response
         return response.getCountry().getName(); // Esempio: restituisci il nome del paese
     }
 

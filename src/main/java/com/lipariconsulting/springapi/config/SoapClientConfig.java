@@ -11,7 +11,7 @@ public class SoapClientConfig {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("com.baeldung.springsoap.gen"); // Package delle classi generate
+        marshaller.setContextPath("com.baeldung.springsoap.gen"); //Generated classes' Package
         return marshaller;
     }
 
@@ -20,7 +20,7 @@ public class SoapClientConfig {
         WebServiceTemplate template = new WebServiceTemplate();
         template.setMarshaller(marshaller);
         template.setUnmarshaller(marshaller);
-        template.setDefaultUri("http://www.baeldung.com/springsoap/gen"); // URL del servizio SOAP
+        template.setDefaultUri("http://localhost:8080/ws/countries.wsdl"); // SOAP service URL
         return template;
     }
 
