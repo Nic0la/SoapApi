@@ -10,25 +10,28 @@ import java.math.BigInteger;
 @RestController
 public class SoapController {
 
-    @Autowired
-    private SoapService soapService;
 
-    @Autowired
-    private NumberConversionSoapType numberConversionSoapType;
+    //private final SoapService soapService;
 
-    @GetMapping("/getCountry")
-    public String getCountry(@RequestParam String country) {
-        return soapService.request(country);
+
+    private final NumberConversionSoapType numberConversionSoapType;
+
+    public SoapController(NumberConversionSoapType numberConversionSoapType) {
+        this.numberConversionSoapType = numberConversionSoapType;
     }
 
-    @GetMapping("/convertNumber")
-    public String convertNumber(@RequestParam("number") int number) {
-        try {
-            String result = numberConversionSoapType.numberToWords(BigInteger.valueOf(number));
-            return result;
-        } catch (Exception e) {
-            return "Error during SOAP request: " + e.getMessage();
-        }
+
+
+//    @GetMapping("/getCountry")
+//    public String getCountry(@RequestParam String country) {
+//        return soapService.request(country);
+//    }
+
+
+    @GetMapping("/convertNumberToWords")
+    public String convertNumberToWords(@RequestParam("number") int number) {
+        return numberConversionSoapType.numberToWords(BigInteger.valueOf(number));
     }
+
 
 }
