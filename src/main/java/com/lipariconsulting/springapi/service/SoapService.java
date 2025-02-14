@@ -22,7 +22,16 @@ public class SoapService {
         GetCountryResponse response = (GetCountryResponse) webServiceTemplate.marshalSendAndReceive(request);
 
         // Process the response
-        return response.getCountry().getName(); // Esempio: restituisci il nome del paese
+        StringBuilder responseBuilder = new StringBuilder();
+        responseBuilder.append("Country:");
+        responseBuilder.append(response.getCountry().getName());
+        responseBuilder.append(" People:");
+        responseBuilder.append(response.getCountry().getPopulation() + " Capital ");
+        responseBuilder.append(response.getCountry().getCapital());
+        responseBuilder.append(" Currency:");
+        responseBuilder.append(response.getCountry().getCurrency());
+
+        return responseBuilder.toString();
     }
 
 
